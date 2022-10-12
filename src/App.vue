@@ -1,28 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <LegendDynamic :legendAbbr="legendAbbr" :legendList="legendList"  @legendAbbrClick="legendAbbrClick" @closeLegend="closeLegend" :legendBorder="true">
+    </LegendDynamic>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import LegendDynamic from './components/LegendDynamic.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    LegendDynamic
+  },
+  data(){
+    return{
+      legendList:[{
+          color:'#000',
+          value:'234'
+        },
+        {
+          src:require("@/assets/logo.png"),
+          value:'234'
+        },
+      ],
+      legendAbbr:true
+    }
+  },
+  methods:{
+    closeLegend(){
+      this.legendAbbr = true
+    },
+    legendAbbrClick(){
+      this.legendAbbr = false
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
